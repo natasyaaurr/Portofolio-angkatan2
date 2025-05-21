@@ -1,78 +1,70 @@
 <?php
-//array adalah tipe data yang dapat menyimpan lebih dari satu data
-$nama = array("Natasyah", "Auralia", "Rahmadini");
-$nama = ["Natasyah", "Auralia", "Rahmadini"];
-echo $nama[2];
+// tas
+
+// $nama = array();
+// $nama = [];
+
+// array index (data nya bisa lebih dari 1)
+$nama = array('Reza', 'Ibrahim', 'Rudi', 'Wawan');
+// 0        1        2      3
+// $nama = "reza, rudi, bambang";
+
 print_r($nama);
 echo "<br>";
 echo "<br>";
-// $buah = array("apel", "jeruk", "mangga") ini adalah array indeks;
-$buah = ["apel", "jeruk", "mangga"];
-echo $buah[1];
+
+echo $nama[0];
 echo "<br>";
+echo $nama[1];
+echo "<br>";
+echo $nama[2];
+echo "<br>";
+echo $nama[3];
+echo "<br>";
+
+$buah = ["Nanas", "Semangka", "Pepaya", "Pir"];
 print_r($buah);
 echo "<br>";
-
 foreach ($buah as $b) {
-    echo "Nama nama buah " . $b . "<br>";
+    echo "Nama-nama buah " . $b . "<br>";
 }
-echo "<br>";
-// gunanya untuk melakukan perulangan pada array
 
-// array asosiatif adalah array yang memiliki kunci dan nilai
-// array asosiatif : key menggunakan string
+// array asosiatif : key nya menggunakan string
 $kelas_web = [
-    "nama" => "Natasyah Auralia Rahmadini",
-    "umur" => 24,
-    "jurusan" => "Teknik Informatika",
+    "nama" => "Budi",
+    "umur" => 25,
+    "jurusan" => "Junior Web Prog"
 ];
+
+echo "Nama siswa " . $kelas_web["nama"] . " Umur " . $kelas_web['umur'] . " Jurusan " . $kelas_web['jurusan'];
 echo "<br>";
-echo "Nama Siswa " . $kelas_web["nama"] . "<br>";
-echo "<br>";
-echo "Usia Siswa " . $kelas_web["umur"] . "<br>";
-echo "<br>";
-echo "Jurusan Siswa " . $kelas_web["jurusan"] . "<br>";
 echo "<br>";
 
-echo " Nama Siswa " . $kelas_web["nama"] . "<br>" . "Usia Siswa " . $kelas_web["umur"] . "<br>" . "Jurusan Siswa " . $kelas_web["jurusan"] . "<br>";
-echo "<br>";
-echo "<br>";
-// array multidimensi adalah array yang memiliki lebih dari satu dimensi
-// array multidimensi adalah array yang bisa menyimpan dengan tipe data yang berbeda
-// array multidimensi adalah array yang bisa menyimpan lebih dari satu array
 $siswa = [
     [
-        "nama" => "Natasyah Auralia Rahmadini",
-        "umur" => 24,
-        "jurusan" => "Teknik Informatika",
+        "nama" => "Reza",
+        "umur" => 30,
+        "jurusan" => "Junior Web Prog",
     ],
     [
-        "nama" => "Arciara Lutfana Aqsa Surya",
-        "umur" => 24,
-        "jurusan" => "Teknik Informatika",
-    ],
-    [
-        "nama" => "Muhammad Albercio Surya",
-        "umur" => 24,
-        "jurusan" => "Teknik Informatika",
+        "nama" => "Bambang",
+        "umur" => 28,
+        "jurusan" => "Junior Web Prog",
     ],
 ];
-
-echo "Nama Siswa " . $siswa[0]["nama"] . "<br>" . "Usia Siswa " . $siswa[0]["umur"] . "<br>" . "Jurusan Siswa " . $siswa[0]["jurusan"] . "<br>";
-echo "Nama Siswa " . $siswa[1]["nama"] . "<br>" . "Usia Siswa " . $siswa[1]["umur"] . "<br>" . "Jurusan Siswa " . $siswa[1]["jurusan"] . "<br>";
-echo "Nama Siswa " . $siswa[2]["nama"] . "<br>" . "Usia Siswa " . $siswa[2]["umur"] . "<br>" . "Jurusan Siswa " . $siswa[2]["jurusan"] . "<br>";
-echo "<br>";
-echo "<br>";
 print_r($siswa);
-[0 => "nama"];
 echo "<br>";
-echo "<br>";
-echo $siswa[1]["nama"];
-echo "<br>";
-echo "<br>";
-foreach ($siswa as $s) {
-    echo "Nama Siswa : " . $s["nama"] . "<br>" . "Usia Siswa : " . $s["umur"] . "<br>" . "Jurusan Siswa : " . $s["jurusan"] . "<br>";
+// echo $siswa[1]['nama']; //Bambang
+foreach ($siswa as $key => $sw) {
+    echo "Key:" . $key . "<br>";
+    echo "Nama : " . $sw['nama'] . "<br>";
+    echo "Umur : " . $sw['umur'] . "<br>";
+    echo "Jurusan : " . $sw['jurusan'] . "<br>";
+    echo "<br>";
 }
-;
+// [0 => "nama", 1 => "nama"]
 
-?>
+// $siswa = array(
+//     array(),
+//     array()
+// );

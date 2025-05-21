@@ -1,22 +1,16 @@
 <?php
 $siswa = [
     [
-        "nama" => "Natasyah Auralia Rahmadini",
-        "umur" => 24,
-        "jurusan" => "Teknik Informatika",
-        "Status" => "1",
+        "nama" => "Reza",
+        "umur" => 30,
+        "jurusan" => "Junior Web Prog",
+        "status" => 1,
     ],
     [
-        "nama" => "Arciara Lutfana Aqsa Surya",
-        "umur" => 24,
-        "jurusan" => "Teknik Informatika",
-        "Status" => "1",
-    ],
-    [
-        "nama" => "Muhammad Albercio Surya",
-        "umur" => 24,
-        "jurusan" => "Teknik Informatika",
-        "Status" => "1",
+        "nama" => "Bambang",
+        "umur" => 28,
+        "jurusan" => "Junior Web Prog",
+        "status" => 0,
     ],
 ];
 
@@ -26,14 +20,13 @@ function ubahStatus($status)
         case '1':
             return "Aktif";
             break;
-
         default:
-            "Tidak Aktif";
-            break;
+            return "Tidak Aktif";
     }
 }
-?>
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,24 +49,14 @@ function ubahStatus($status)
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($siswa as $key => $s) { ?>
+            <?php foreach ($siswa as $key => $sw) { ?>
                 <tr>
-                    <td><?= $s["nama"]; ?></td>
-                    <td><?= $s["umur"]; ?></td>
-                    <td><?= $s["jurusan"]; ?></td>
+                    <td><?php echo $sw['nama'] ?></td>
+                    <td><?php echo $sw['umur'] ?></td>
+                    <td><?php echo $sw['jurusan'] ?></td>
                     <td>
                         <?php
-                        switch ($s['Status']) {
-                            case '1':
-                                echo "Aktif";
-                                break;
-
-                            default:
-                                return "Tidak Aktif";
-                                break;
-                        }
-
-                        // echo ubahStatus($s['Status']);
+                            echo ubahStatus($sw['status']);
                         ?>
                     </td>
                 </tr>

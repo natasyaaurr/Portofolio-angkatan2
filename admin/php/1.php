@@ -1,34 +1,24 @@
-<?php 
-echo "test";
-// untuk mencetak string
-print("test");
-// untuk mencetak tipe data array
-print "test";
-// untuk mencetak string
-var_dump("test");
-// untuk mencetak string dan memunculkan tipe datanya 
+<?php
+echo "tess"; //echo mencetak string
+print_r("Tess"); //menctetak type data array
+print "Tess"; //string
+echo "<br>";
+var_dump("Tessss"); //mencetak string dan memunculkan tipe datanya
 
-
-
-// variabel adalah tempat untuk menyimpan data
-$nama = " Natasyah auralia Rahmadini";
+// variable 
+$nama  = "Bambang Pamungkas";
 echo $nama;
 echo "<br>";
-$umur = 24;
+$umur  = 30;
 echo $umur;
 echo "<br>";
-$tinggi_badan = 169.6;
+$tinggi_badan = 165.9;
 echo $tinggi_badan;
-echo "cm";  
+echo "cm";
 echo "<br>";
 
-
-define("NAMA", "Natasyah Auralia Rahmadini");
-echo NAMA;
+define("alamat", "Karet Jakarta Pusat");
+echo alamat;
 echo "<br>";
-const telp = "0851-6281-0412";
+const telp = "08994212290";
 echo telp;
-echo "<br>";
-
-
-?>
