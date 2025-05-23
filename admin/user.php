@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'config/koneksi.php';
 
 //munculkan atau pilih semua data dari table user dan urutkan dari yang terbesar sampai yang terkecil
@@ -8,7 +8,7 @@ $row = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $queryDelete = mysqli_query($config,"DELETE FROM users WHERE id='$id'");
+    $queryDelete = mysqli_query($config, "DELETE FROM users WHERE id='$id'");
     header("location:user.php?hapus=berhasil");
 }
 
@@ -28,7 +28,7 @@ if (isset($_GET['delete'])) {
 
 <body>
     <div class="wrapper">
-        <?php include 'inc/header.php';?>
+        <?php include 'inc/header.php'; ?>
         <div class="content mt-5">
             <div class="container">
                 <div class="row">
@@ -39,8 +39,9 @@ if (isset($_GET['delete'])) {
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                <div align="right" class="mb-3">
-                                        <a href="tambah-user.php" class="btn btn-primary">Tambah User</a>
+                                    <div align="right" class="mb-3">
+                                        <a href="tambah-user.php?role=<?= base64_encode($_SESSION['role']) ?>"
+                                            class="btn btn-primary">Tambah User</a>
                                     </div>
                                     <table class="table table-bordered table-striped">
                                         <thead>
@@ -52,17 +53,19 @@ if (isset($_GET['delete'])) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($row as $key => $data) :?>
-                                            <tr>
-                                                <td><?= $key + 1 ?></td>
-                                                <td><?= $data['name']?></td>
-                                                <td><?=$data['email']?></td>
-                                                <td>
-                                                    <a href="tambah-user.php?edit=<?php echo $data['id']?>" class="btn btn-success">Edit</a>
-                                                    <a onclick="return confirm('Yakin ingin menghapus data ini?')"
-                                                        href="user.php?delete=<?php echo $data['id']?>" class="btn btn-warning btn-sm">Hapus</a>
-                                                </td>
-                                            </tr>
+                                            <?php foreach ($row as $key => $data): ?>
+                                                <tr>
+                                                    <td><?= $key + 1 ?></td>
+                                                    <td><?= $data['name'] ?></td>
+                                                    <td><?= $data['email'] ?></td>
+                                                    <td>
+                                                        <a href="tambah-user.php?edit=<?php echo $data['id'] ?>&role=<?= base64_encode($_SESSION['role']) ?>"
+                                                            class="btn btn-success">Edit</a>
+                                                        <a onclick="return confirm('Yakin ingin menghapus data ini?')"
+                                                            href="user.php?delete=<?php echo $data['id'] ?>"
+                                                            class="btn btn-warning btn-sm">Hapus</a>
+                                                    </td>
+                                                </tr>
                                             <?php endforeach ?>
                                         </tbody>
                                     </table>

@@ -1,13 +1,13 @@
-<?php 
+<?php
 include 'config/koneksi.php';
 
 //jika user menekan atau mengklik tombol simpan maka perintah yang di jalankan adalah ambil data dari inputan email , nama dan password
 //masukkan ke dalam table name,email,password dengan nilai dari masing masing inputan.
 
-if (isset ($_POST['simpan'])) {
+if (isset($_POST['simpan'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = sha1 ($_POST['password']);
+    $password = sha1($_POST['password']);
 
     $query = mysqli_query($config, "INSERT INTO users (name,email,password) VALUES ('$name','$email','$password')");
     if ($query) {
@@ -16,15 +16,15 @@ if (isset ($_POST['simpan'])) {
 
 }
 
-$header = isset ($_GET ['edit'])?"Edit":"Tambah";
-$id_user =isset ($_GET ['edit']) ? $_GET['edit'] : '';
-$queryEdit = mysqli_query($config,"SELECT * FROM users WHERE id='$id_user'");
+$header = isset($_GET['edit']) ? "Edit" : "Tambah";
+$id_user = isset($_GET['edit']) ? $_GET['edit'] : '';
+$queryEdit = mysqli_query($config, "SELECT * FROM users WHERE id='$id_user'");
 $rowEdit = mysqli_fetch_assoc($queryEdit);
 
-if (isset ($_POST['edit'])) {
+if (isset($_POST['edit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = sha1 ($_POST['password']);
+    $password = sha1($_POST['password']);
 
     $queryUpdate = mysqli_query($config, "UPDATE users SET name='$name', email='$email', password='$password' WHERE id='$id_user'");
     if ($queryUpdate) {
@@ -48,89 +48,57 @@ if (isset ($_POST['edit'])) {
 
 <body>
     <div class="wrapper">
-        <header class="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <nav class="navbar navbar-expand-lg bg-body-White">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">CMS Aca</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Page
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">AboutUs</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="user.php">User</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
+        <?php include 'inc/header.php' ?>
         <div class="content mt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                               <?= $header ?> Data User
+                                <?= $header ?> Data User
                             </div>
                             <div class="card-body">
                                 <form action="" method="post">
                                     <div class="mb-3 row">
                                         <div class="col-sm-2">
-                                         <label for="name" class="form-label">Nama *</label>
-                                         </div>
-                                         <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Masukkan Nama Anda" required value="<?=$rowEdit['name']?>">
-                                         </div>
+                                            <label for="name" class="form-label">Nama *</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Masukkan Nama Anda" required
+                                                value="<?= isset($_GET['edit']) ? $rowEdit['name'] : "" ?>">
+                                        </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <div class="col-sm-2">
-                                         <label for=email" class="form-label">Email *</label>
-                                         </div> 
-                                         <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Ex:admin@gmail.com" required value="<?=$rowEdit['email']?>">
-                                         </div>
+                                            <label for="email" class="form-label">Email *</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Ex:admin@gmail.com" required
+                                                value="<?= isset($_GET['edit']) ? $rowEdit['email'] : "" ?>">
+                                        </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <div class="col-sm-2">
-                                         <label for="password" class="form-label">Password *</label>
-                                         </div> 
-                                         <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            placeholder="Masukkan Password Anda" required>
-                                         </div>
+                                            <label for="password" class="form-label">Password *</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Masukkan Password Anda" required>
+                                        </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-primary" name="<?= isset($_GET['edit'])?'edit':'simpan'?>">Simpan</button>
-                                            </div>
-                                    </div>  
+                                            <button type="submit" class="btn btn-primary"
+                                                name="<?= isset($_GET['edit']) ? 'edit' : 'simpan' ?>">Simpan</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
 
         </div>
