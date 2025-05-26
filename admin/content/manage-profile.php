@@ -1,7 +1,7 @@
 <?php
 include "config/koneksi.php";
 if (isset($_POST['simpan'])) {
-    $profile_name = isset($_POST['profile_name']) ? $_POST['profile_name'] : "";
+    $profile_name = $_POST['profile_name'];
     $profesion = $_POST['profesion'];
     $description = $_POST['description'];
     $photo = $_FILES['photo'];
@@ -52,7 +52,7 @@ if (isset($_POST['simpan'])) {
 
         <label for="" class="form-label mt-2">Photo</label>
         <input type="file" class="form-control" name="photo">
-        <img src="uploads/<?php echo !isset($row['photo']) ? '' : $row['photo'] ?>" alt="" width="150">
+        <img src="uploads/<?php echo ($row['photo']) ?>" alt="" width="150">
         <br>
         <?php
         if (empty($row['profile_name'])) {
@@ -64,7 +64,7 @@ if (isset($_POST['simpan'])) {
         } else {
             ?>
             <a onclick="return confirm('YAKIN INGIN HAPUS??')"
-                href="?role=<?php echo base64_encode($_SESSION['role']) ?>&page=manage-profile&del=<?php echo $row['id'] ?>"
+                href=""
                 class="btn btn-danger mt-2 " name="del"> Delete </a>
             <?php
         }
