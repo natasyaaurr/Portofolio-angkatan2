@@ -27,6 +27,7 @@ $rowWorks = mysqli_fetch_all($queryWorks, MYSQLI_ASSOC);
     <meta name="description" content="">
     <meta name="author" content="">
 
+
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
