@@ -4,9 +4,16 @@ include 'admin/config/koneksi.php';
 
 $queryProfile = mysqli_query($config, "SELECT * FROM about ORDER BY id DESC ");
 $rowProfile = mysqli_fetch_assoc($queryProfile);
+
+$queryExperience = mysqli_query($config, "SELECT * FROM experience ORDER BY id DESC");
+$rowExperience = mysqli_fetch_all($queryExperience, MYSQLI_ASSOC);
+
+$queryEducation = mysqli_query($config, "SELECT * FROM Education ORDER BY id DESC");
+$rowEducation = mysqli_fetch_all($queryEducation, MYSQLI_ASSOC);
+
+$queryWorks = mysqli_query($config, "SELECT * FROM works ORDER BY id DESC");
+$rowWorks = mysqli_fetch_all($queryWorks, MYSQLI_ASSOC);
 ?>
-
-
 
 <!DOCTYPE html>
 <html class="no-js ss-preload" lang="en">
@@ -39,9 +46,6 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
 </head>
 
 <body id="top">
-
-    <h1>testtt</h1>
-    <h2>haiii</h2>
     <!-- # preloader
     ================================================== -->
     <div id="preloader">
@@ -68,14 +72,14 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
         <header class="s-header">
 
             <div class="header-mobile">
-                <span class="mobile-home-link"><a href="index.html">Natasyah_</a></span>
+                <span class="mobile-home-link"><a href="index.php">Natasyah_</a></span>
                 <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
             </div>
 
             <div class="row wide main-nav-wrap">
                 <nav class="column lg-12 main-nav">
                     <ul>
-                        <li><a href="index.html" class="home-link">Natasyah_</a></li>
+                        <li><a href="index.php" class="home-link">Natasyah_</a></li>
                         <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
                         <li><a href="#about" class="smoothscroll">About</a></li>
                         <li><a href="#works" class="smoothscroll">Works</a></li>
@@ -100,7 +104,7 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
 
                     <div class="column">
                         <div class="text-pretitle with-line">
-                            Hello World
+                            Hello....
                         </div>
 
                         <h1 class="text-huge-title">
@@ -110,14 +114,6 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
                             in Jakarta.
                         </h1>
                     </div>
-
-                    <ul class="intro-social">
-                        <li><a href="#0">Behance</a></li>
-                        <li><a href="#0">Twitter</a></li>
-                        <li><a href="#0">Dribbble</a></li>
-                        <li><a href="#0">Instagram</a></li>
-                    </ul>
-
                 </div> <!-- end intro content -->
 
                 <a href="#about" class="intro-scrolldown smoothscroll">
@@ -153,7 +149,7 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
                             <p class="attention-getter" data-animate-el>
                                 <?php echo isset($rowProfile['content']) ? $rowProfile['content'] : '' ?>
                             </p>
-                            <a href="#0" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
+                            <a href="" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
 
                         </div>
                     </div>
@@ -163,15 +159,12 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
                 <div class="row about-expertise" data-animate-block>
                     <div class="column lg-12">
 
-                        <h2 class="text-pretitle" data-animate-el>Expertise</h2>
+                        <h2 class="text-pretitle" data-animate-el>Keahlian</h2>
 
                         <ul class="skills-list h1" data-animate-el>
-                            <li>Visual Design</li>
-                            <li>Branding Identity</li>
-                            <li>UI Design</li>
-                            <li>Product Design</li>
-                            <li>Prototyping</li>
-                            <li>Illustration</li>
+                            <li>Pelayanan</li>
+                            <li>Problem Solving</li>
+                            <li>Komunikasi</li>
                         </ul>
 
                     </div>
@@ -187,37 +180,19 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
                         </h2>
 
                         <div class="timeline" data-animate-el>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Dropbox</h3>
-                                        <h5 class="timeline__meta">Product Designer</h5>
-                                        <p class="timeline__timeframe">August 2019 - Present</p>
+                            <?php foreach ($rowExperience as $experience): ?>
+                                <div class="timeline__block">
+                                    <div class="timeline__bullet"></div>
+                                    <div class="timeline__header">
+                                        <h4 class="timeline__title"><?php echo $experience['comp_name'] ?></h4>
+                                        <h5 class="timeline__meta"><?php echo $experience['profesion'] ?></h5>
+                                        <p class="timeline__timeframe"><?php echo $experience['waktu'] ?></p>
+                                    </div>
+                                    <div class="timeline__desc">
+                                        <p><?php echo $experience['pekerjaan'] ?></p>
+                                    </div>
                                 </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi
-                                        cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident
-                                        cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet
-                                        est occaecat nisi.</p>
-                                </div>
-                            </div>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Microsoft</h4>
-                                    <h5 class="timeline__meta">Frontend Developer</h5>
-                                    <p class="timeline__timeframe">August 2016 - July 2019</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi
-                                        cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident
-                                        cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet
-                                        est occaecat nisi.</p>
-                                </div>
-                            </div>
-
+                            <?php endforeach; ?>
                         </div> <!-- end timeline -->
 
                     </div> <!-- end column -->
@@ -229,37 +204,16 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
                         </h2>
 
                         <div class="timeline" data-animate-el>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">University of Life</h3>
-                                        <h5 class="timeline__meta">Master in Graphic Design</h5>
-                                        <p class="timeline__timeframe">April 2015</p>
+                            <?php foreach ($rowEducation as $education): ?>
+                                <div class="timeline__block">
+                                    <div class="timeline__bullet"></div>
+                                    <div class="timeline__header">
+                                        <h4 class="timeline__title"><?php echo $education['nama_sekolah'] ?></h4>
+                                        <h5 class="timeline__meta"><?php echo $education['jurusan'] ?></h5>
+                                        <p class="timeline__timeframe"><?php echo $education['tahun_lulus'] ?></p>
+                                    </div>
                                 </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi
-                                        cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident
-                                        cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet
-                                        est occaecat nisi.</p>
-                                </div>
-                            </div>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">School of Cool Designers</h4>
-                                    <h5 class="timeline__meta">B.A. Degree in Graphic Design</h5>
-                                    <p class="timeline__timeframe">August 2012</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi
-                                        cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident
-                                        cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet
-                                        est occaecat nisi.</p>
-                                </div>
-                            </div>
-
+                            <?php endforeach ?>
                         </div> <!-- end timeline -->
 
                     </div> <!-- end column -->
@@ -288,168 +242,34 @@ $rowProfile = mysqli_fetch_assoc($queryProfile);
 
                         <ul class="folio-list row block-lg-one-half block-stack-on-1000">
 
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-01">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/fuji.jpg"
-                                            srcset="images/portfolio/fuji.jpg 1x, images/portfolio/fuji@2x.jpg 2x"
-                                            alt="">
-                                    </div>
+                            <?php foreach ($rowWorks as $works): ?>
+                                <li class="folio-list__item column" data-animate-el>
+                                    <a class="folio-list__item-link" href="#modal-06">
+                                        <div class="folio-list__item-pic">
+                                            <img src="images/portfolio/minimalismo.jpg <?php echo isset($rowProfile['photo']) ? $rowProfile['photo'] : '' ?>"
+                                                srcset="images/portfolio/minimalismo.jpg 1x, images/portfolio/minimalismo@2x.jpg 2x"
+                                                alt="">
+                                        </div>
 
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
+                                        <div class="folio-list__item-text">
+                                            <div class="folio-list__item-cat">
+                                                <?php echo $works['categories'] ?>
+                                            </div>
+                                            <div class="folio-list__item-title">
+                                                <?php echo $works['title'] ?>
+                                            </div>
                                         </div>
-                                        <div class="folio-list__item-title">
-                                            Retro Camera.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
+                                    </a>
+                                    <!-- <a class="folio-list__proj-link" href="#" title="project link">
                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
                                             fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
                                     </svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-02">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/lamp.jpg"
-                                            srcset="images/portfolio/lamp.jpg 1x, images/portfolio/lamp@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Product Design
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            The White Lamp.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-                                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-03">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/rucksack.jpg"
-                                            srcset="images/portfolio/rucksack.jpg 1x, images/portfolio/rucksack@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Branding
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Rucksuck.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-                                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-04">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/skaterboy.jpg"
-                                            srcset="images/portfolio/skaterboy.jpg 1x, images/portfolio/skaterboy@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Since Day One.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-                                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-05">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg"
-                                            srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Illustration
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Sand Dunes.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-                                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-06">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/minimalismo.jpg"
-                                            srcset="images/portfolio/minimalismo.jpg 1x, images/portfolio/minimalismo@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Branding
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Minimalismo.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-                                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
+                                </a> -->
+                                </li> <!--end folio-list__item -->
+                            <?php endforeach; ?>
                         </ul> <!-- end folio-list -->
 
                     </div> <!-- end column -->
